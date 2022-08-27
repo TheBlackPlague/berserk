@@ -567,8 +567,8 @@ int Negamax(int alpha, int beta, int depth, int cutnode, ThreadData* thread, PV*
       // increase reduction on non-pv
       if (!isPV) R++;
 
-      // increase reduction if our eval is declining
-      if (!improving) R++;
+      // increase reduction if our eval is ascending, and we're past a certain depth
+      if (improving && depth > 5) R++;
 
       // reduce these special quiets less
       if (killerOrCounter) R -= 2;
